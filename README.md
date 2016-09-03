@@ -18,7 +18,7 @@ Three methods in your entity must be written:
 
 
 Example:
-
+```php
     namespace MyProject;
 
     use DoctrineExtensions\Taggable\Taggable;
@@ -69,7 +69,7 @@ Example:
             return $this->tags;
         }
     }
-
+```
 
 ### Setup Doctrine
 
