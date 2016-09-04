@@ -77,32 +77,32 @@ Finally, you need to setup doctrine for register metadata directory and register
 
 
 First, register the metadata directory of this package.
-
+```php
     $config = new \Doctrine\ORM\Configuration();
     // ...
     $driverImpl = new \Doctrine\ORM\Mapping\Driver\XmlDriver(array('/path/to/doctrine-extensions-taggable/metadata'));
     $config->setMetadataDriverImpl($driverImpl);
-
+```
 or with `DriverChain`:
-
+```php
     $driverImpl = new \Doctrine\ORM\Mapping\Driver\DriverChain();
     // ...
     $driverImpl->addDriver(new \Doctrine\ORM\Mapping\Driver\XmlDriver('/path/to/doctrine-extensions-taggable/metadata'), 'DoctrineExtensions\\Taggable\\Entity');
-
+```
 
 Then, register the TagListener.
-
+```php
     // $this->em = EntityManager::create($connection, $config);
     // ...
 
     $this->tagManager = new TagManager($this->em);
     $this->em->getEventManager()->addEventSubscriber(new TagListener($this->tagManager));
-
+```
 
 ### Using TagManager
 
 Now, you can use TagManager.
-
+```php
     // Load or create a new tag
     $tag = $this->tagManager->loadOrCreateTag('Smallville');
 
@@ -129,7 +129,7 @@ Now, you can use TagManager.
     // Replace all current tags..
     $tags = $this->tagManager->loadOrCreateTags(array('Smallville', 'Superman'));
     $this->tagManager->replaceTags($tags, $article);
-
+```
 ### Tag-related queries
 
 The Tag entity has a repository class, with two particularly helpful methods:
